@@ -29,19 +29,21 @@
             getPublishers();
             getAuthors();
             getCategories();
-            
+
             if ($state.params.id)
                 getBook($state.params.id);
+            else
+                startObjBook();
         }
 
         function getBook(id) {
-            $(".loading").show();
+            $(".loading").stop().fadeIn(200);
             booksService
                 .getBooks(id)
                 .then(function (data) {
                     vm.book = data;
                     vm.book.ReleaseDay = vm.book.ReleaseDay != null ? getDateJson(vm.book.ReleaseDay) : getDateToday();
-                    $(".loading").hide();
+                    $(".loading").stop().fadeOut(400);
                 }, function () {
                     //Function Fail
                 });
@@ -57,7 +59,7 @@
 
             $("input,select").parent().removeClass("has-error");
             $("input,select").filter('[required]:visible').each(function () {
-                if (!$(this).val()) {
+                if (!$(this).val() || $(this).val() == '? undefined:undefined ?') {
                     $(this).parent().addClass("has-error");
                     vm.errors.push({ txt: "• Campo '" + $(this).parent().find("label").html().replace(':', '') + "' é obrigatório." });
                 }
@@ -65,38 +67,40 @@
 
             if (vm.errors.length == 0) {
 
-                $(".loading").show();
+                $(".loading").stop().fadeIn(200);
 
                 if (vm.PublisherSelect)
                     vm.book.IDPublisher = parseInt(vm.PublisherSelect);
 
-                vm.book.ReleaseDay = new Date(vm.ReleaseDay ? vm.ReleaseDay : vm.book.ReleaseDay).toJSON();
+                vm.book.ReleaseDay = new Date(vm.ReleaseDay ? vm.ReleaseDay 
+                    : (vm.book.ReleaseDay ? vm.book.ReleaseDay
+                        : getDateToday())).toJSON();
 
                 booksService
                     .setBook(vm.book)
                     .then(function () {
-                        $(".loading").hide();
+                        $(".loading").stop().fadeOut(400);
                         $state.go('books');
                     });
             }
         }
 
         function goDelete() {
-            $(".loading").show();
+            $(".loading").stop().fadeIn(200);
             booksService
                 .deleteBook(vm.book.ID)
                 .then(function () {
-                    $(".loading").hide();
+                    $(".loading").stop().fadeOut(400);
                     $state.go('books');
                 });
         }
 
         function getPublishers() {
-            $(".loading").show();
+            $(".loading").stop().fadeIn(200);
             booksService
                 .getPublishers()
                 .then(function (data) {
-                    $(".loading").hide();
+                    $(".loading").stop().fadeOut(400);
                     vm.Publishers = data;
                 }, function () {
                     //Function Fail
@@ -104,11 +108,11 @@
         }
 
         function getAuthors() {
-            $(".loading").show();
+            $(".loading").stop().fadeIn(200);
             booksService
                 .getAuthors()
                 .then(function (data) {
-                    $(".loading").hide();
+                    $(".loading").stop().fadeOut(400);
                     vm.Authors = data;
                 }, function () {
                     //Function Fail
@@ -116,11 +120,11 @@
         }
 
         function getCategories() {
-            $(".loading").show();
+            $(".loading").stop().fadeIn(200);
             booksService
                 .getCategories()
                 .then(function (data) {
-                    $(".loading").hide();
+                    $(".loading").stop().fadeOut(400);
                     vm.Categories = data;
                 }, function () {
                     //Function Fail
@@ -132,6 +136,20 @@
             
             if (idx > -1) list.splice(idx, 1);
             else list.push(obj);
+        }
+
+        function startObjBook() {
+            vm.book = {
+                ID: 0,
+                IDPublisher: 0,
+                Active: true,
+                Authors :[],
+                Categories:[],
+                Description:"",
+                ReleaseDay:null,
+                Title:"",
+                Units:null
+            }
         }
     }
 

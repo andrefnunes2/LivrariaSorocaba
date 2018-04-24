@@ -10,5 +10,6 @@ button.pull-right           { margin-left:10px; }
 .lstItemSmall               { max-height:142px; overflow:auto; }
 .lstItemSmall li            { padding:3px 15px; }
 .list-group-item-danger     { background-color:#ffdfdf; color:#920101; border-color:#ba3030; }
+.item-danger                { background-color:#ffdfdf; color:#920101; }
 .loading                    { position:fixed; z-index: 9999; background-color:rgba(0, 0, 0, 0.74); width: 100%; height: 100%; display: inline-block; }
 .loading span               { position:absolute; left:50%; top:50%; margin:-70px 0 0 -50px; color: #fff; font-weight:bold; text-transform:uppercase; font-size:14px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; }

@@ -83,7 +83,7 @@ INSERT INTO Categories VALUES
 
 INSERT INTO Books VALUES
 (1,'O Poder do Hábito', '2011-03-10',5,1,'Descrição do Livro',1),
-(1,'O Monge e o Executivo', '2012-04-20',9,1,'Descrição do Livro',1),
+(1,'O Monge e o Executivo', '2012-04-20',9,1,'Descrição do Livro',0),
 (1,'Sonho Grande', '2013-05-30',1,1,'Descrição do Livro',1),
 (1,'A Mágica da Arrumação', '2014-06-05',2,1,'Descrição do Livro',1)
 

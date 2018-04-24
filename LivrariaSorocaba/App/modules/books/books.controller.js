@@ -36,12 +36,12 @@
         }
 
         function lstBooks() {
-            $(".loading").show();
+            $(".loading").stop().fadeIn(200);
             booksService
                 .getBooks()
                 .then(function (data) {
                     vm.lstBooks = data;
-                    $(".loading").hide();
+                    $(".loading").stop().fadeOut(400);
                 }, function () {
                     //Function Fail
                 });

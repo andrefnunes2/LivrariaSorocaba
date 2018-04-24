@@ -193,9 +193,6 @@
     <Content Include="Assets\css\Site.css" />
     <Content Include="App\js\bootstrap.js" />
     <Content Include="App\js\bootstrap.min.js" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="App\js\jquery-1.10.2.intellisense.js" />
     <Content Include="App\js\jquery-1.10.2.js" />
     <Content Include="App\js\jquery-1.10.2.min.js" />
