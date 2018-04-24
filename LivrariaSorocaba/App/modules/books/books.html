@@ -1,0 +1,23 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <h2>Listagem de livros</h2>
+        </div>
+        <div class="col-sm-3">
+            <button class="btn btn-primary pull-right" data-ng-click="vm.goNew()">Novo</button>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="list-group">
+                <li class="list-group-item" data-ng-repeat="book in vm.lstBooks">
+                    <span>{{book.Title}}</span>
+                    <button class="btn btn-success btn-xs pull-right" data-ng-click="vm.goEdit(book.ID)">Editar</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

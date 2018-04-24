@@ -1,0 +1,101 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <h2>Edição de livro</h2>
+        </div>
+        <div class="col-sm-3">
+            <button class="btn pull-right" data-ng-click="vm.goBack()">Voltar</button>
+        </div>
+    </div>
+
+    <hr />
+
+    <ul class="list-group lstItemSmall" data-ng-if="vm.errors.length > 0">
+        <li class="list-group-item list-group-item-danger"
+            data-ng-repeat="error in vm.errors">{{error.txt}}</li>
+    </ul>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Titulo:</label>
+                <input type="text" class="form-control" data-ng-model="vm.book.Title" required />
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label>Editora:</label>
+                <select data-ng-model="vm.PublisherSelect" class="form-control" required>
+                    <option data-ng-repeat="editora in vm.Publishers" 
+                            data-ng-value="editora.ID"
+                            data-ng-selected="vm.book.IDPublisher == editora.ID">{{editora.Name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label>Data Edição:</label>
+                <input type="date" class="form-control" value="{{vm.book.ReleaseDay}}" data-ng-model="vm.ReleaseDay" required />
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label>Unidades:</label>
+                <input type="number" class="form-control" data-ng-model="vm.book.Units" required />
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <label>Ativo:</label>
+                <div class="checkbox">
+                    <label><input type="checkbox" class="checkActive" data-ng-model="vm.book.Active"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <label><strong>Autor:</strong></label>
+            <ul class="list-group lstItemSmall">
+                <li class="list-group-item" 
+                    data-ng-repeat="author in vm.Authors">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" 
+                               data-ng-checked="vm.book.Authors.indexOf(author.ID) != -1 && vm.book.Authors.length > 0" 
+                               data-ng-click="vm.toggleSelection(author.ID, vm.book.Authors)"
+                               data-ng-value="author.ID">{{author.Name + ' ' + author.LastName}}
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <label><strong>Categoria:</strong></label>
+            <ul class="list-group lstItemSmall">
+                <li class="list-group-item" data-ng-repeat="category in vm.Categories">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" 
+                               data-ng-click="vm.toggleSelection(category.ID, vm.book.Categories)"
+                               data-ng-checked="vm.book.Categories.indexOf(category.ID) != -1 && vm.book.Categories.length > 0"
+                               data-ng-value="category.ID">{{category.Title}}
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label>Descrição:</label>
+                <textarea class="form-control" rows="5" data-ng-model="vm.book.Description"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-success pull-right" data-ng-click="vm.goSave()">Registrar</button>
+            <button class="btn btn-danger pull-right" data-ng-click="vm.goDelete()" data-ng-if="vm.book.ID > 0">Excluir</button>
+            <button class="btn pull-right" data-ng-click="vm.goBack()">Cancelar</button>
+        </div>
+    </div>
+</div>

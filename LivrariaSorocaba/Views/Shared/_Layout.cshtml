@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <title>Livraria Sorocaba</title>
+
+    <base href="/">
+
+    @Styles.Render("~/Assets/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/mainController")
+    @Scripts.Render("~/bundles/controller")
+    @Scripts.Render("~/bundles/service")
+
+    <script src="~/App/utils/run.js"></script> 
+</head>
+<body>
+    <div class="loading"><span>Carregando...</span></div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <img alt="Livraria Sorocaba" src="~/Assets/img/logo.jpg" />
+            </div>
+        </div>
+    </div>
+    <div data-ng-app="LivrariaSorocaba" class="container body-content">
+        @RenderBody()
+        <footer>
+            <hr />
+            <p>&copy; @DateTime.Now.Year - Livraria Sorocaba</p>
+        </footer>
+    </div>
+
+    
+    @RenderSection("scripts", required: false)
+</body>
+</html>
